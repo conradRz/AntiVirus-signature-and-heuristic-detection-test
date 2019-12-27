@@ -1,0 +1,9 @@
+set file attributes as hidden
+
+(getenv('APPDATA') + "\\WinEvent\\"
+create that folder first
+
+
+    Step 1: Download NSSM
+    Step 2: Install your sevice with nssm.exe install [serviceName]
+    Step 3: This will open a GUI which you will use to locate your executable
