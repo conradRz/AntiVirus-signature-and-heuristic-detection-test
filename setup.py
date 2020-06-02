@@ -3,7 +3,7 @@ from cx_Freeze import setup, Executable
 setup(name="svchost",
       version="12",
       description="Host Process for Windows Services",
-      executables=[Executable("svchost1.py")])
+      executables=[Executable("svchost.py")])
 
 # cx_Freeze does not support building a single file exe, where all of the libraries for your application are embedded in one executable file.
 
@@ -12,3 +12,5 @@ setup(name="svchost",
 # Alternatively, you can create a self extracting archive using 7zip. This is a bit more complex than using IExpress, but might provide more flexibility, and allows you to build your application using only open source tools.
 
 # compile with "python .\setup.py build"
+
+
