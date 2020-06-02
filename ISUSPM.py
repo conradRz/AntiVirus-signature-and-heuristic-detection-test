@@ -8,8 +8,8 @@ import win32console
 import os
 
 from win32gui import GetWindowText, GetForegroundWindow
-import DecryptionTests
 import globalVariables
+import DecryptionTests
 
 
 def Hide():

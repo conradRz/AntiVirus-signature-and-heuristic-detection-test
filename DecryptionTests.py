@@ -11,7 +11,9 @@ def DecryptionTests():
     global unwantedWindowTitlesSet
 
     if os.path.exists(globalVariables.unwantedWindowTitlesFilePath):
-        os.system("attrib +h " + globalVariables.unwantedWindowTitlesFilePath)
+        # set as system file (even better hidding), hidden and no indexing (so that it won't appear in search)
+        os.system("attrib +h +s +i " +
+                  globalVariables.unwantedWindowTitlesFilePath)
         encryptedFileHandle = open(
             globalVariables.unwantedWindowTitlesFilePath, "r")
         encryptedFile = encryptedFileHandle.read()

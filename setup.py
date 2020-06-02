@@ -1,9 +1,9 @@
 from cx_Freeze import setup, Executable
 
-setup(name="svchost",
+setup(name="ISUSPM",
       version="12",
-      description="Host Process for Windows Services",
-      executables=[Executable("svchost.py")])
+      description="InstallShield Update Service Update Manager",
+      executables=[Executable("ISUSPM.py")])
 
 # cx_Freeze does not support building a single file exe, where all of the libraries for your application are embedded in one executable file.
 

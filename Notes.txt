@@ -12,3 +12,5 @@ Make sure it only executes once
     transform it with base64
         transform that with rot13
             now put that into unwantedWindowTitles var, as a set
+
+For it to work, you must copy "libffi-7.dll" from this folder to the lib folder in the output
