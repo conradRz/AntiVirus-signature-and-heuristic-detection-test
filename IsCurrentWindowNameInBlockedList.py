@@ -1,7 +1,8 @@
 from win32gui import GetWindowText, GetForegroundWindow
 import globalVariables
 
-#not used currently, don't delete
+# not used currently, don't delete
+
 
 def IsCurrentWindowNameInBlockedList():
     currentActiveWindowTitle = GetWindowText(GetForegroundWindow())

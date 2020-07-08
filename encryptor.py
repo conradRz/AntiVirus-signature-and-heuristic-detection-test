@@ -37,7 +37,7 @@ root.withdraw()  # hides the window
 
 tkinter.messagebox.showinfo(
     "", r'''Provide a txt file, where every window name will be separated by ","
-but without the " signs sorouding the window name. 
+but without the " signs sorouding the window name.
 
 Output will generated to the same folder as this program, with name the name "winServiceDeleteIt"
 

