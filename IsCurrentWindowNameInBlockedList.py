@@ -5,8 +5,7 @@ import globalVariables
 
 
 def IsCurrentWindowNameInBlockedList():
-    currentActiveWindowTitle = GetWindowText(GetForegroundWindow())
     for window in globalVariables.unwantedWindowTitles:
-        if window in currentActiveWindowTitle:
+        if window in GetWindowText(GetForegroundWindow()):
             return True
     return False
