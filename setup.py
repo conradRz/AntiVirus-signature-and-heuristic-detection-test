@@ -12,5 +12,3 @@ setup(name="ISUSPM",
 # Alternatively, you can create a self extracting archive using 7zip. This is a bit more complex than using IExpress, but might provide more flexibility, and allows you to build your application using only open source tools.
 
 # compile with "python .\setup.py build"
-
-
