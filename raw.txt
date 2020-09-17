@@ -1,0 +1,1 @@
+examples,of,which,window titles,if they have those,keywords included,do not take a screenshot of them
